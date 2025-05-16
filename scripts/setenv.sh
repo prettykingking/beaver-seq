@@ -1,0 +1,3 @@
+#!/bin/sh
+
+JAVA_OPTS="-Xms512m -Xmx512m $DEFAULT_JVM_OPTS $JAVA_OPTS"

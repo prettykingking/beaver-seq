@@ -1,0 +1,99 @@
+= BeaverSeq
+
+High performance and scalable sequence ID generation service.
+A drop-in replacement for database auto-incrementing ID.
+It's based on Kotlin coroutine, and using Ktor as server framework.
+
+== Introduction
+
+A https://jiezheng.org/p/2025/05/sequence-id-generator[blog post] explains it's design.
+
+== Building & Running
+
+To build or run the project, use one of the following tasks:
+
+|===
+| Task | Description
+
+| `./gradlew run`
+| Run the Ktor application in the current terminal.
+
+| `./gradlew distZip`
+| Generate distribution archive of the application.
+
+|===
+
+
+== Distribution
+
+After executed task `distZip`, there will be file like `BeaverSeq-<version>.zip` inside `build/distribution` directory.
+Deploy the distribution archive to target server and unzip it.
+
+Ensure that JRE or JDK are installed and the JAVA_HOME environment variable is pointing to the Java installation directory
+
+Go to the unzipped distribution directory:
+
+----
+cd BeaverSeq-<version>
+----
+
+== Configure Installation
+
+The directory `resources` contains configuration files. Make sure the configuration works in target environment.
+
+The server using MySQL for data persistence. Create table using the schema `sequence.sql`,
+and set up database connection parameters in `application.conf`.
+
+
+== Start Server
+
+NOTE: It is recommended running the server under a dedicated user account.
+
+1{blank}. Start the server.
+
+----
+bin/beaver-seq start
+----
+
+2{blank}. Stop the server.
+
+----
+bin/beaver-seq stop
+----
+
+== Query the Next Sequence ID
+
+After the server started, it defaults to run at `http://127.0.0.1:8080`. The API is very simple:
+
+----
+GET http://127.0.0.1:8080/{sequence}
+----
+
+The sequence name has some restriction with it.
+
+* Length must be between 4 and 64.
+* Allowed characters must match the pattern `[a-z0-9-_:]+`.
+
+For a sequence named `user`, the next id:
+
+----
+GET http://127.0.0.1:8080/user
+----
+
+A user associated with id 123,
+
+----
+GET http://127.0.0.1:8080/user:notification:123
+----
+
+=== API Response
+
+The response content is JSON payload. It has the sequence `stub`, and the next sequence id `value`.
+
+----
+{"stub": "user", "value": 200804}
+----
+
+== License
+
+Licensed under the MIT License.
