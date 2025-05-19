@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  */
 object SequenceDefault {
     const val OFFSET: Int = 1
-    const val BUCKET: Short = 100
+    const val BUCKET: Short = 100 // The size of pre-allocated sequence ids in memory for faster access
     const val STEP: Byte = 1
 }
 
