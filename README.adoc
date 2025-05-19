@@ -1,6 +1,6 @@
 = BeaverSeq
 
-High performance and scalable sequence ID generation service.
+High performance sequence ID generation service.
 A drop-in replacement for database auto-incrementing ID.
 It's based on Kotlin coroutine, and using Ktor as server framework.
 
