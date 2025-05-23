@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 
-object SequenceIdTable : IntIdTable("sequence_id", "added_id") {
+object SequenceIdTable : IntIdTable("sequence", "added_id") {
     val stub = varchar("stub", 64)
     val offset = integer("offset")
     val bucket = short("bucket")

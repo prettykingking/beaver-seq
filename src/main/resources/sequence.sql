@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `sequence_id` (
+CREATE TABLE IF NOT EXISTS `sequence` (
     added_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stub VARCHAR(64) NOT NULL, # sequence name
     offset INT NOT NULL, # the next sequence starts at, defaults to 1
