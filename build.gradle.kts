@@ -66,8 +66,8 @@ tasks.getByName<CreateStartScripts>("startScripts") {
 }
 
 tasks.getByName<ProcessResources>("processResources") {
-    exclude("application.conf", "logback.xml", "sequence.sql")
 }
 
 tasks.getByName<Jar>("jar") {
+    exclude("application.conf", "logback.xml", "sequence.sql")
 }
