@@ -36,7 +36,7 @@ class SequenceBarrier(private val stub: String, private val sequenceChannel: Cha
     }
 
     private suspend fun nextBucket(): SequenceId? {
-        val current : SequenceId? = sequenceIdRepository.findByStub(stub)
+        val current: SequenceId? = sequenceIdRepository.findByStub(stub)
         if (current == null) {
             val sequenceId = SequenceId(stub,
                 SequenceDefault.OFFSET,
@@ -57,7 +57,7 @@ class SequenceBarrier(private val stub: String, private val sequenceChannel: Cha
                 current.step,
                 current.version + 1)
             sequenceIdRepository.update(next)
-            return current
+            return next
         }
     }
 }
